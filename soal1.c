@@ -13,25 +13,49 @@
 
 int main(){
     int N;
+    int a,b;
     int jumlah = 0;
     scanf("%d", &N);
     int arr[N];
-    for(int i=0; i<=N; i++){
-        arr[i]=-1;
-    }
+
     for(int i=0; i<N; i++){
         scanf("%d", &arr[i]);
     }
-    for(int i=N-1; i>=0; i--){
-        if(arr[i]==-1){
-            if(arr[i-1]!=-1 && arr[i+1]!=-1){
-                arr[i] = floor((arr[i+1]+arr[i-1])/2);
+    
+    for(int i=0; i<N; i++){
+        a=i,b=i;
+        if(arr[i]==-1 && i == 0){
+            while(arr[a+1]==-1 && a!=N-1){
+                a++;
+            }
+            if(a==N-1){
+                arr[i] = 0;
+            }
+            else{
+                arr[i]=arr[a+1];
+            }
+        }
+        else if(arr[i]==-1 && i == N-1){
+            arr[i] = arr[i-1];
+        }
+        else if(arr[i]==-1){
+            while(arr[a+1]==-1 && a!=N-1){
+                a++;
+            }
+            if(a==N-1){
+                a = i;
+            }
+            if(arr[a+1]!=-1 && arr[i-1]!=-1){
+                arr[i] = floor((arr[a+1]+arr[i-1])/2);
+                if(arr[i] <=0 && (arr[a+1]+arr[i-1])%2!=0){
+                    arr[i] = arr[i]-1;
+                }
             }
             else if(arr[i-1]!=-1){
-                arr[i]=arr[i-1];
+                arr[i] = arr[i-1];
             }
             else if(arr[i+1]!=-1){
-                arr[i]=arr[i+1];
+                arr[i] = arr[i+1];
             }
         }
     }
