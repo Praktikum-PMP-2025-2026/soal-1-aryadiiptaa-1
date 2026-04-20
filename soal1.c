@@ -34,7 +34,10 @@ int main(){
     }
     printf("RECOVERED ");
     for(int i=0; i<N; i++){
-        printf("%d ", arr[i]);
+        printf("%d", arr[i]);
+        if(i!=N-1){
+            printf(" ");
+        }
         jumlah = jumlah + arr[i];
     }
     printf("\n");
